@@ -6,12 +6,12 @@ import org.scalatest.{Matchers, FlatSpec}
 import persistance.MongoDao
 import org.mockito.Mockito._
 
-class PosterTest extends FlatSpec with Matchers with MockitoSugar {
+class PosterAggregateTest extends FlatSpec with Matchers with MockitoSugar {
 
   "receiveEvent" should "persist a post" in {
     val mockMongoDao = mock[MongoDao]
     val mockListener = mock[Listener]
-    val poster = new Poster(mockMongoDao)
+    val poster = new PosterAggregate(mockMongoDao)
 
     poster.addListener(mockListener)
     poster.receiveEvent(Event("createPost", "body"))

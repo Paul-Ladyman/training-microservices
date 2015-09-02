@@ -5,9 +5,10 @@ import communication.{Emitter, Listener, Event}
 
 object VivoClientInboundGateway extends Emitter {
 
-  def createPost = {
+  def createPost(body: String) = {
     listeners.foreach(listener => {
-      listener.receiveEvent(Event("createPost", ""))
+      println(s">>>>>> Creating post $body")
+      listener.receiveEvent(Event("createPost", body))
     })
   }
 }

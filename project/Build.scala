@@ -26,7 +26,8 @@ object Build extends SbtBuild {
           libraryDependencies ++= Seq(
             // Source dependencies
             "org.scalatest" %% "scalatest" % "2.2.4" % "test",
-            "org.mockito" %  "mockito-core" % "1.9.5" % "test,it"
+            "org.mockito" %  "mockito-core" % "1.9.5" % "test,it",
+            "com.rabbitmq" % "amqp-client" % "3.3.4"
           )
         )
   ).configs(IntegrationTest).settings(Defaults.itSettings: _*)

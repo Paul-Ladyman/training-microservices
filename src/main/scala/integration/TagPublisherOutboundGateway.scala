@@ -1,8 +1,8 @@
 package integration
 
-import communication.{Listener, Event}
+import communication.Event
 
-class TagPublisherOutboundGateway extends Listener {
+class TagPublisherOutboundGateway {
   val postCreatedEvent = "postCreated"
 
   def receiveEvent(event: Event) = {

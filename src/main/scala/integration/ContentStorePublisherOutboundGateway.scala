@@ -1,8 +1,8 @@
 package integration
 
-import communication.{Event, Listener}
+import communication.Event
 
-class ContentStorePublisherOutboundGateway extends Listener {
+class ContentStorePublisherOutboundGateway {
   val postCreatedEvent = "postCreated"
 
   def receiveEvent(event: Event) = {

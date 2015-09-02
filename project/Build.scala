@@ -4,6 +4,7 @@ import sbt.{Build => SbtBuild, _}
 
 object Build extends SbtBuild {
   val ScalaVersion = "2.10.4"
+  val Json4sVersion = "3.2.10"
 
   lazy val project = Project (
     "microservices",
@@ -27,7 +28,9 @@ object Build extends SbtBuild {
             // Source dependencies
             "org.scalatest" %% "scalatest" % "2.2.4" % "test",
             "org.mockito" %  "mockito-core" % "1.9.5" % "test,it",
-            "com.rabbitmq" % "amqp-client" % "3.3.4"
+            "com.rabbitmq" % "amqp-client" % "3.3.4",
+            "org.json4s" %% "json4s-native" % Json4sVersion,
+            "org.json4s" %% "json4s-ext" % Json4sVersion
           )
         )
   ).configs(IntegrationTest).settings(Defaults.itSettings: _*)

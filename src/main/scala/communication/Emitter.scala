@@ -2,7 +2,7 @@ package communication
 
 import com.rabbitmq.client.ConnectionFactory
 
-object Emitter {
+trait Emitter {
   // Create a connection to the AMPQ node
   val factory = new ConnectionFactory()
   factory.setUri("amqp://dhalfxhj:TJ-8jR4Z9ikYuFVy2mULh75CjnisKSmL@bunny.cloudamqp.com/dhalfxhj")
@@ -13,13 +13,17 @@ object Emitter {
 
   // Define an Exchange and a Queue on that channel
   val exchangeName = "training-microservices"
-  val queueName = "training-microservices-queue"
-  val routingKey = "training-microservices-routing"
-  channel.queueDeclare(queueName, true, false, false, null)
-  channel.queueBind(queueName, exchangeName, routingKey)
+  val emitterQueueName: String
+  val emitterRoutingKey: String
+
+
+  def startEmitter = {
+    channel.queueDeclare(emitterQueueName, true, false, false, null)
+    channel.queueBind(emitterQueueName, exchangeName, emitterRoutingKey)
+  }
 
   def publishMessage(message: String) = {
     val messageBodyBytes = message.getBytes
-    channel.basicPublish(exchangeName, routingKey, null, messageBodyBytes)
+    channel.basicPublish(exchangeName, emitterRoutingKey, null, messageBodyBytes)
   }
 }
